@@ -2,7 +2,7 @@
 
 set -xe
 
-_name='transmission-3'
+_name='transmission-4'
 
 _machine="$(uname -m)"
 _long_image_name="ghcr.io/empjustine/${_name}:${_machine}-$(date --iso=date)"

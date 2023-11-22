@@ -2,7 +2,7 @@
 
 set -xe
 
-_name='transmission-3'
+_name='base-39'
 
 _machine="$(uname -m)"
 _long_image_name="ghcr.io/empjustine/${_name}:${_machine}-$(date --iso=date)"
@@ -22,8 +22,8 @@ case "$_machine" in
 		;;
 esac
 
-podman image build --arch "$_arch" --file "$_containerfile" --tag "$_long_image_name" \
-	--label "org.opencontainers.image.source=https://github.com/empjustine/oci-images" \
+podman image build --pull=always --no-cache --arch "$_arch" --file "$_containerfile" --tag "$_long_image_name" \
+	--label 'org.opencontainers.image.source=https://github.com/empjustine/oci-images' \
 	--label "org.opencontainers.artifact.created=$(date --iso=seconds)" .
 podman image tag "$_long_image_name" "$_short_image_name"
 
