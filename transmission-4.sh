@@ -24,6 +24,8 @@ esac
 
 podman image build --arch "$_arch" --file "$_containerfile" --tag "$_long_image_name" \
 	--label "org.opencontainers.image.source=https://github.com/empjustine/oci-images" \
+	--label "org.opencontainers.image.description=Transmission 4" \
+	--label "org.opencontainers.image.licenses=MIT" \
 	--label "org.opencontainers.artifact.created=$(date --iso=seconds)" .
 podman image tag "$_long_image_name" "$_short_image_name"
 

@@ -1,6 +1,8 @@
-FROM ghcr.io/empjustine/base-37:x86_64
+FROM registry.fedoraproject.org/fedora-minimal:37
 
-RUN microdnf install transmission-daemon-3.00-13.fc37 transmission-cli-3.00-13.fc37 transmission-common-3.00-13.fc37 --nodocs --noplugins --setopt=install_weak_deps=0 --assumeyes && \
+RUN \
+	microdnf upgrade --best --nodocs --noplugins --setopt=install_weak_deps=0 --assumeyes && \
+	microdnf install tini transmission-daemon-3.00-13.fc37 transmission-cli-3.00-13.fc37 transmission-common-3.00-13.fc37 --nodocs --noplugins --setopt=install_weak_deps=0 --assumeyes && \
 	microdnf clean all && \
 	grep 'transmission:x:998:998:transmission daemon account:/var/lib/transmission:/sbin/nologin' /etc/passwd && \
 	grep 'transmission:x:998' /etc/group && \
